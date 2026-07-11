@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AgentOS 核心子系统、关系与数据流交互地图">
+  <title>AgentOS System Map</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="AgentOS System Map">
+      <span class="brand-mark">≡</span>
+      <span><strong>AGENTOS</strong><small>SYSTEM ATLAS / 0.1</small></span>
+    </a>
+    <div class="status"><i></i> AGENT APPLICATION LAYER · 11 SUBSYSTEMS · 15 CONNECTIONS</div>
+    <button id="labelsButton" class="small-button">显示连线标签</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div><p>AGENT-NATIVE OPERATING SYSTEM</p><h1>AgentOS 核心子系统交互地图</h1></div>
+      <div class="hero-copy">Agent 作为应用实体运行在 AgentOS 之上；AgentOS 为多个 Agent 提供调度、运行、通信、记忆、工具和治理能力。</div>
+    </section>
+
+    <section class="layout">
+      <aside class="panel flows-panel">
+        <div class="panel-title"><b>A</b><h2>数据流场景</h2><button id="playButton" aria-label="暂停自动播放">Ⅱ</button></div>
+        <div id="flowList"></div>
+        <div class="layer-legend">
+          <h3>LAYER LEGEND</h3>
+          <span><i class="control"></i>控制与编排</span>
+          <span><i class="execution"></i>执行与资源</span>
+          <span><i class="knowledge"></i>状态与知识</span>
+          <span><i class="connectivity"></i>连接与通信</span>
+          <span><i class="governance"></i>安全与治理</span>
+        </div>
+        <div id="flowSummary" class="flow-summary"></div>
+      </aside>
+
+      <section class="panel map-panel">
+        <div class="panel-title"><b>B</b><h2>系统拓扑</h2><span class="legend-line">当前数据流</span></div>
+        <div class="map-scroll">
+          <div id="systemMap" class="system-map playing">
+            <div class="grid"></div>
+            <div class="agent-band"><span>AGENT APPLICATION LAYER / RUNS ON AGENTOS</span></div>
+            <svg id="edgeLayer" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <div id="agentLayer"></div>
+            <div id="nodeLayer"></div>
+          </div>
+        </div>
+        <div class="map-footer"><span>CLICK NODE TO INSPECT</span><span id="flowIndex">FLOW / 01</span></div>
+      </section>
+
+      <aside class="panel inspector">
+        <div class="panel-title"><b>C</b><h2>子系统详情</h2><span id="inspectorCode"></span></div>
+        <div id="inspectorContent"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>AGENTOS SYSTEM ATLAS <span>从“一个 Agent 能做什么”，转向“多个 Agent 如何被运行、协作与治理”。</span> WORKING MODEL · 2026</footer>
+  <script src="app.js"></script>
+</body>
+</html>
