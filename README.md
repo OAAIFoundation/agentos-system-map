@@ -1,21 +1,28 @@
-# AgentOS System Map
+# AgentOS Kernel Map
 
-An interactive system map for discussing and refining the architecture of an Agent-native operating system.
+An interactive map for discussing the minimum stable kernel and replaceable system services of an Agent-native operating system.
 
-The map distinguishes two levels:
+The map distinguishes four architectural areas:
 
-- **Agent application layer** — Agent instances run above AgentOS.
-- **AgentOS system layer** — 11 subsystems provide scheduling, runtime, communication, model access, state, memory, tools, workspace, security, observability, and governance.
+- **Agent applications** — Product and domain agents built on the kernel.
+- **Agent kernel** — Execution Loop, Context Manager, Tool Runtime, and Model Interface.
+- **Extension services** — Memory, multi-agent workflows, knowledge, workspace, sandbox, and evaluation.
+- **Providers and adapters** — Model APIs, MCP, A2A, local tools, and programmatic tool execution.
 
-## Core distinctions
+Security, observability, and lifecycle management are modeled as cross-cutting contracts rather than ordinary services.
 
-- **Agent Communication Stack** handles Agent-to-Agent, AgentOS-to-AgentOS, MCP, streaming, webhook, discovery, and message routing.
-- **Model Gateway** handles model API adapters, multi-model routing, cost, quota, privacy filtering, circuit breaking, and fallback.
+## Core boundaries
+
+- Memory is a provider for context assembly, not the Context Manager itself.
+- MCP is an adapter for tools and context; A2A handles collaboration between independent agents.
+- Multi-agent orchestration composes multiple kernels and remains outside the minimum single-agent kernel.
+- Provider-specific model behavior is normalized behind a stable Model Interface.
 
 ## Interaction
 
-- Select one of four data-flow scenarios.
-- Click a subsystem to inspect its responsibilities, inputs, and outputs.
+- Switch between Kernel Only and Full System views.
+- Select one of six runtime scenarios.
+- Click a module to inspect responsibilities, contracts, extension points, standards, and failure semantics.
 - Toggle connection labels.
 - Press `Space` to pause or resume automatic flow playback.
 

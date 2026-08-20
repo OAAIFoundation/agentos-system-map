@@ -3,62 +3,92 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AgentOS 核心子系统、关系与数据流交互地图">
-  <title>AgentOS System Map</title>
+  <meta name="description" content="AgentOS 最小内核、扩展服务与开放标准交互地图">
+  <title>AgentOS Kernel Map</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="AgentOS System Map">
-      <span class="brand-mark">≡</span>
-      <span><strong>AGENTOS</strong><small>SYSTEM ATLAS / 0.1</small></span>
+    <a class="brand" href="./" aria-label="AgentOS Kernel Map">
+      <span class="brand-mark">K</span>
+      <span><strong>AGENTOS</strong><small>KERNEL ATLAS / 0.2</small></span>
     </a>
-    <div class="status"><i></i> AGENT APPLICATION LAYER · 11 SUBSYSTEMS · 15 CONNECTIONS</div>
-    <button id="labelsButton" class="small-button">显示连线标签</button>
+    <div class="status"><i></i> 4 KERNEL MODULES · 6 EXTENSIONS · 3 CONTRACTS</div>
+    <button id="labelsButton" class="small-button" type="button">显示连线标签</button>
   </header>
 
   <main>
     <section class="hero">
-      <div><h1>AgentOS 核心子系统交互地图</h1></div>      
+      <div>
+        <p>SMALL KERNEL · STRONG CONTRACTS · OPEN ADAPTERS</p>
+        <h1>AgentOS 内核与扩展架构</h1>
+      </div>
+      <p class="hero-copy">以执行循环、上下文、工具运行时和模型接口构成最小内核；记忆、多 Agent 与工作流作为可替换的系统服务运行在其上。</p>
     </section>
 
     <section class="layout">
       <aside class="panel flows-panel">
-        <div class="panel-title"><b>A</b><h2>数据流场景</h2><button id="playButton" aria-label="暂停自动播放">Ⅱ</button></div>
+        <div class="panel-title">
+          <b>A</b>
+          <h2>运行场景</h2>
+          <button id="playButton" class="icon-button" type="button" aria-label="暂停自动播放" title="暂停自动播放">Ⅱ</button>
+        </div>
+        <div class="view-switch" aria-label="拓扑视图">
+          <button class="view-button active" type="button" data-mode="kernel">Kernel Only</button>
+          <button class="view-button" type="button" data-mode="full">Full System</button>
+        </div>
         <div id="flowList"></div>
         <div class="layer-legend">
-          <h3>LAYER LEGEND</h3>
-          <span><i class="control"></i>控制与编排</span>
-          <span><i class="execution"></i>执行与资源</span>
-          <span><i class="knowledge"></i>状态与知识</span>
-          <span><i class="connectivity"></i>连接与通信</span>
-          <span><i class="governance"></i>安全与治理</span>
+          <h3>ARCHITECTURE LEGEND</h3>
+          <span><i class="kernel"></i>Agent Kernel</span>
+          <span><i class="extension"></i>Extension Service</span>
+          <span><i class="contract"></i>Cross-cutting Contract</span>
+          <span><i class="adapter"></i>Provider / Adapter</span>
         </div>
         <div id="flowSummary" class="flow-summary"></div>
       </aside>
 
       <section class="panel map-panel">
-        <div class="panel-title"><b>B</b><h2>系统拓扑</h2><span class="legend-line">当前数据流</span></div>
+        <div class="panel-title">
+          <b>B</b>
+          <h2>系统拓扑</h2>
+          <span class="legend-line">当前路径</span>
+        </div>
         <div class="map-scroll">
-          <div id="systemMap" class="system-map playing">
+          <div id="systemMap" class="system-map playing mode-kernel">
             <div class="grid"></div>
-            <div class="agent-band"><span>AGENT APPLICATION LAYER / RUNS ON AGENTOS</span></div>
-            <svg id="edgeLayer" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <div class="application-band"><span>AGENT APPLICATIONS / BUILT ON THE KERNEL</span></div>
+            <div class="kernel-boundary"><span>AGENT KERNEL / MINIMUM STABLE CORE</span></div>
+            <div class="extension-band"><span>EXTENSION &amp; SYSTEM SERVICES / REPLACEABLE</span></div>
+            <div class="provider-band"><span>PROVIDERS &amp; OPEN ADAPTERS</span></div>
+            <svg id="edgeLayer" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true"></svg>
             <div id="agentLayer"></div>
             <div id="nodeLayer"></div>
+            <div id="providerLayer"></div>
           </div>
         </div>
-        <div class="map-footer"><span>CLICK NODE TO INSPECT</span><span id="flowIndex">FLOW / 01</span></div>
+        <div class="map-footer">
+          <span id="mapModeLabel">KERNEL VIEW</span>
+          <span id="flowIndex">FLOW / 01</span>
+        </div>
       </section>
 
       <aside class="panel inspector">
-        <div class="panel-title"><b>C</b><h2>子系统详情</h2><span id="inspectorCode"></span></div>
+        <div class="panel-title">
+          <b>C</b>
+          <h2>模块契约</h2>
+          <span id="inspectorCode"></span>
+        </div>
         <div id="inspectorContent"></div>
       </aside>
     </section>
   </main>
 
-  <footer>AGENTOS SYSTEM ATLAS <span>从“一个 Agent 能做什么”，转向“多个 Agent 如何被运行、协作与治理”。</span> WORKING MODEL · 2026</footer>
+  <footer>
+    <span>AGENTOS KERNEL ATLAS · WORKING MODEL / 2026</span>
+    <span>小内核 · 强契约 · 可插拔服务 · 开放适配器</span>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
